@@ -169,7 +169,7 @@
     <elementParameter field="TABLE" name="CONDITIONS">
       <elementValue elementRef="INPUT_COLUMN" value="Sal"/>
       <elementValue elementRef="FUNCTION" value=""/>
-      <elementValue elementRef="OPERATOR" value=">="/>
+      <elementValue elementRef="OPERATOR" value=">"/>
       <elementValue elementRef="RVALUE" value="10000"/>
     </elementParameter>
     <elementParameter field="CHECK" name="USE_ADVANCED" value="false"/>
