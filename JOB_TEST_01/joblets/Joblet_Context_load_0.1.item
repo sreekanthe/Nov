@@ -157,17 +157,17 @@
       <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSetGlobalVar_1" show="false"/>
       <elementParameter field="TABLE" name="VARIABLES">
         <elementValue elementRef="KEY" value="&quot;host&quot;"/>
-        <elementValue elementRef="VALUE" value="&quot;host&quot;"/>
+        <elementValue elementRef="VALUE" value="host"/>
         <elementValue elementRef="KEY" value="&quot;port&quot;"/>
-        <elementValue elementRef="VALUE" value="&quot;port&quot;"/>
+        <elementValue elementRef="VALUE" value="port"/>
         <elementValue elementRef="KEY" value="&quot;user&quot;"/>
-        <elementValue elementRef="VALUE" value="&quot;user&quot;"/>
+        <elementValue elementRef="VALUE" value="user"/>
         <elementValue elementRef="KEY" value="&quot;pass&quot;"/>
-        <elementValue elementRef="VALUE" value="&quot;pass&quot;"/>
+        <elementValue elementRef="VALUE" value="pass"/>
         <elementValue elementRef="KEY" value="&quot;database&quot;"/>
-        <elementValue elementRef="VALUE" value="&quot;database&quot;"/>
+        <elementValue elementRef="VALUE" value="database"/>
         <elementValue elementRef="KEY" value="&quot;table&quot;"/>
-        <elementValue elementRef="VALUE" value="&quot;table&quot;"/>
+        <elementValue elementRef="VALUE" value="table"/>
       </elementParameter>
       <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
       <metadata connector="FLOW" name="tSetGlobalVar_1">
