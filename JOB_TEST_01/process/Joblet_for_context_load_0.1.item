@@ -240,7 +240,7 @@
   <node componentName="Joblet_Context_load" componentVersion="0.1" offsetLabelX="0" offsetLabelY="0" posX="192" posY="32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="Joblet_Context_load_1"/>
     <elementParameter field="TEXT" name="FAMILY" value="Joblets"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
+    <elementParameter field="CHECK" name="ACTIVATE" value="true"/>
     <elementParameter field="CHECK" name="DUMMY" value="false" show="false"/>
     <elementParameter field="CHECK" name="STARTABLE" value="true" show="false"/>
     <elementParameter field="CHECK" name="START" value="true" show="false"/>
@@ -257,7 +257,6 @@
   </node>
   <node componentName="tContextLoad" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="448" posY="32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tContextLoad_1" show="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
     <elementParameter field="CLOSED_LIST" name="LOAD_NEW_VARIABLE" value="Warning"/>
     <elementParameter field="CLOSED_LIST" name="NOT_LOAD_OLD_VARIABLE" value="Warning"/>
     <elementParameter field="CHECK" name="PRINT_OPERATIONS" value="false"/>
@@ -278,7 +277,6 @@
   </connection>
   <connection connectorName="OUTPUT_1" label="row2" lineStyle="0" metaname="OUTPUT_1" offsetLabelX="0" offsetLabelY="0" source="Joblet_Context_load_1" target="tContextLoad_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
-    <elementParameter field="CHECK" name="ACTIVATE" value="false" show="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row2" show="false"/>
   </connection>
   <subjob>
