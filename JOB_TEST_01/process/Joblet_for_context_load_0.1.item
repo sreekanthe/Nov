@@ -118,15 +118,15 @@
     <elementParameter field="RADIO" name="USE_INTABLE" value="true"/>
     <elementParameter field="TABLE" name="INTABLE">
       <elementValue elementRef="key" value="host"/>
-      <elementValue elementRef="value" value="localhost"/>
+      <elementValue elementRef="value" value="&quot;localhost&quot;"/>
       <elementValue elementRef="key" value="port"/>
-      <elementValue elementRef="value" value="3306"/>
+      <elementValue elementRef="value" value="&quot;3306&quot;"/>
       <elementValue elementRef="key" value="user"/>
-      <elementValue elementRef="value" value="root"/>
+      <elementValue elementRef="value" value="&quot;root&quot;"/>
       <elementValue elementRef="key" value="pass"/>
-      <elementValue elementRef="value" value="root"/>
+      <elementValue elementRef="value" value="&quot;root&quot;"/>
       <elementValue elementRef="key" value="database"/>
-      <elementValue elementRef="value" value="oracle"/>
+      <elementValue elementRef="value" value="&quot;oracle&quot;"/>
     </elementParameter>
     <elementParameter field="RADIO" name="USE_INLINECONTENT" value="false"/>
     <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;" show="false"/>
