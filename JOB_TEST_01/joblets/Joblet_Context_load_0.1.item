@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties" xmlns:model="http://www.talend.com/joblet.ecore">
   <model:JobletProcess defaultContext="Default" jobType="Standard">
-    <context confirmationNeeded="false" name="Default">
-      <contextParameter comment="" name="host" prompt="host?" promptNeeded="false" type="id_String" value=""/>
-      <contextParameter comment="" name="port" prompt="port?" promptNeeded="false" type="id_Integer" value=""/>
-      <contextParameter comment="" name="user" prompt="user?" promptNeeded="false" type="id_String" value=""/>
-      <contextParameter comment="" name="pass" prompt="pass?" promptNeeded="false" type="id_String" value=""/>
-      <contextParameter comment="" name="database" prompt="database?" promptNeeded="false" type="id_String" value=""/>
-      <contextParameter comment="" name="context_file_Path" prompt="context_file_Path?" promptNeeded="false" type="id_String" value="&quot;C:/Users/lenovo/Desktop/context.txt&quot;"/>
-    </context>
+    <context confirmationNeeded="false" name="Default"/>
     <parameters>
       <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="64" show="false"/>
       <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="0" show="false"/>
