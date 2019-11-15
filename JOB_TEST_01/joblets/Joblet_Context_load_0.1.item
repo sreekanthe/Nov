@@ -167,7 +167,7 @@
         <elementValue elementRef="KEY" value="&quot;database&quot;"/>
         <elementValue elementRef="VALUE" value="database"/>
         <elementValue elementRef="KEY" value="&quot;table&quot;"/>
-        <elementValue elementRef="VALUE" value="table"/>
+        <elementValue elementRef="VALUE" value="&quot;table&quot;"/>
       </elementParameter>
       <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
       <metadata connector="FLOW" name="tSetGlobalVar_1">
