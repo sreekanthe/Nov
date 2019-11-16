@@ -3,7 +3,7 @@
   <context confirmationNeeded="false" name="Default"/>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="0" show="false"/>
-    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="64" show="false"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="0" show="false"/>
     <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" value="" show="false"/>
     <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" value="" show="false"/>
     <elementParameter field="TEXT" name="OOZIE_HADOOP_DISTRIBUTION" value="" show="false"/>
@@ -237,7 +237,7 @@
       <additionalProperties key="Comment" value=""/>
     </metadata>
     <metadata connector="FLOW" label="scd1" name="update">
-      <column comment="" key="false" length="10" name="empno" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="true" length="10" name="empno" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="10" name="empname" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -249,15 +249,6 @@
       <column comment="" key="false" length="10" name="HRA" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
-      <column comment="" key="false" length="10" name="deptno" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="deptname" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="loc" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
       <column comment="" key="false" length="19" name="Etl_date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
@@ -266,25 +257,22 @@
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties shellMaximized="true"/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
-      <outputTables sizeState="INTERMEDIATE" name="insert">
-        <mapperTableEntries name="empno" type="id_Integer" nullable="true"/>
-        <mapperTableEntries name="empname" type="id_String" nullable="true"/>
-        <mapperTableEntries name="sal" type="id_String" nullable="true"/>
-        <mapperTableEntries name="HRA" type="id_Integer" nullable="true"/>
-        <mapperTableEntries name="deptno" type="id_Integer" nullable="true"/>
-        <mapperTableEntries name="deptname" type="id_String" nullable="true"/>
-        <mapperTableEntries name="loc" type="id_String" nullable="true"/>
-        <mapperTableEntries name="Etl_date" type="id_Date" nullable="true"/>
+      <outputTables sizeState="INTERMEDIATE" name="insert" expressionFilter="Relational.ISNULL(row2.empno) " activateExpressionFilter="true">
+        <mapperTableEntries name="empno" expression="row1.empno" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="empname" expression="row1.empname" type="id_String" nullable="true"/>
+        <mapperTableEntries name="sal" expression="row1.sal" type="id_String" nullable="true"/>
+        <mapperTableEntries name="HRA" expression="row1.HRA" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="deptno" expression="row1.deptno" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="deptname" expression="row1.deptname" type="id_String" nullable="true"/>
+        <mapperTableEntries name="loc" expression="row1.loc" type="id_String" nullable="true"/>
+        <mapperTableEntries name="Etl_date" expression="row2.Etl_date" type="id_Date" nullable="true"/>
       </outputTables>
-      <outputTables sizeState="INTERMEDIATE" name="update">
-        <mapperTableEntries name="empno" type="id_Integer" nullable="true"/>
-        <mapperTableEntries name="empname" type="id_String" nullable="true"/>
-        <mapperTableEntries name="sal" type="id_String" nullable="true"/>
-        <mapperTableEntries name="HRA" type="id_Integer" nullable="true"/>
-        <mapperTableEntries name="deptno" type="id_Integer" nullable="true"/>
-        <mapperTableEntries name="deptname" type="id_String" nullable="true"/>
-        <mapperTableEntries name="loc" type="id_String" nullable="true"/>
-        <mapperTableEntries name="Etl_date" type="id_Date" nullable="true"/>
+      <outputTables sizeState="INTERMEDIATE" name="update" expressionFilter="!Relational.ISNULL(row2.empno) &amp;&amp; (!row1.sal.equals  (row2.sal)||!row1.HRA .equals(row2.HRA)))" activateExpressionFilter="true">
+        <mapperTableEntries name="empno" expression="row1.empno" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="empname" expression="row1.empname" type="id_String" nullable="true"/>
+        <mapperTableEntries name="sal" expression="row1.sal" type="id_String" nullable="true"/>
+        <mapperTableEntries name="HRA" expression="row1.HRA" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="Etl_date" expression="row2.Etl_date" type="id_Date" nullable="true"/>
       </outputTables>
       <inputTables sizeState="INTERMEDIATE" name="row1" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="empno" type="id_Integer" nullable="true"/>
@@ -295,8 +283,8 @@
         <mapperTableEntries name="deptname" type="id_String" nullable="true"/>
         <mapperTableEntries name="loc" type="id_String" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row2" matchingMode="ALL_ROWS" lookupMode="LOAD_ONCE">
-        <mapperTableEntries name="empno" type="id_Integer" nullable="true"/>
+      <inputTables sizeState="INTERMEDIATE" name="row2" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+        <mapperTableEntries name="empno" expression="row1.empno " type="id_Integer" nullable="true" operator="="/>
         <mapperTableEntries name="empname" type="id_String" nullable="true"/>
         <mapperTableEntries name="sal" type="id_String" nullable="true"/>
         <mapperTableEntries name="HRA" type="id_Integer" nullable="true"/>
@@ -307,7 +295,7 @@
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tMysqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="0">
+  <node componentName="tMysqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMysqlInput_1" show="false"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" value="_wCRJMAeQEeqbTYKQ-kenlg" show="false"/>
@@ -526,7 +514,7 @@
       <additionalProperties key="Comment" value=""/>
     </metadata>
   </node>
-  <node componentName="tMysqlOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="608" posY="224">
+  <node componentName="tMysqlOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="608" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMysqlOutput_3" show="false"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" value="_wCRJMAeQEeqbTYKQ-kenlg" show="false"/>
@@ -542,8 +530,6 @@
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;scd1&quot;"/>
     <elementParameter field="CLOSED_LIST" name="TABLE_ACTION" value="NONE"/>
     <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="UPDATE"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA_FLOW:SCHEMA_TYPE" value="REPOSITORY" show="false"/>
-    <elementParameter field="TECHNICAL" name="SCHEMA_FLOW:REPOSITORY_SCHEMA_TYPE" value="_wCRJMAeQEeqbTYKQ-kenlg - scd1" show="false"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -581,21 +567,6 @@
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="deptno"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="deptname"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
-      <elementValue elementRef="SCHEMA_COLUMN" value="loc"/>
-      <elementValue elementRef="UPDATE_KEY" value="false"/>
-      <elementValue elementRef="DELETE_KEY" value="false"/>
-      <elementValue elementRef="UPDATABLE" value="true"/>
-      <elementValue elementRef="INSERTABLE" value="true"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="Etl_date"/>
       <elementValue elementRef="UPDATE_KEY" value="false"/>
       <elementValue elementRef="DELETE_KEY" value="false"/>
@@ -611,7 +582,7 @@
     <elementParameter field="TEXT" name="LABEL" value="__TABLE__"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="scd1" name="tMysqlOutput_3">
-      <column comment="" key="false" length="10" name="empno" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="true" length="10" name="empno" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="10" name="empname" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -621,15 +592,6 @@
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="10" name="HRA" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="deptno" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="deptname" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="loc" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="19" name="Etl_date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
@@ -638,7 +600,7 @@
       <additionalProperties key="Comment" value=""/>
     </metadata>
     <metadata connector="REJECT" label="scd1" name="REJECT">
-      <column comment="" key="false" length="10" name="empno" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
+      <column comment="" key="true" length="10" name="empno" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="10" name="empname" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
@@ -648,15 +610,6 @@
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="10" name="HRA" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="deptno" nullable="true" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="deptname" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
-        <additionalField key="Comment" value=""/>
-      </column>
-      <column comment="" key="false" length="10" name="loc" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true">
         <additionalField key="Comment" value=""/>
       </column>
       <column comment="" key="false" length="19" name="Etl_date" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="DATETIME" type="id_Date" usefulColumn="true">
