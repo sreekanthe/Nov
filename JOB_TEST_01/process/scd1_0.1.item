@@ -262,13 +262,13 @@
         <mapperTableEntries name="deptno" expression="row1.deptno" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="deptname" expression="row1.deptname" type="id_String" nullable="true"/>
         <mapperTableEntries name="loc" expression="row1.loc" type="id_String" nullable="true"/>
-        <mapperTableEntries name="Etl_date" expression="row2.Etl_date" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="Etl_date" expression="TalendDate.getCurrentDate()" type="id_Date" nullable="true"/>
       </outputTables>
       <outputTables sizeState="INTERMEDIATE" name="update" expressionFilter="!Relational.ISNULL(row2.empno) &amp;&amp; (!row1.sal.equals  (row2.sal)||!row1.HRA.equals(row2.HRA))" activateExpressionFilter="true">
         <mapperTableEntries name="empno" expression="row1.empno" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="sal" expression="row1.sal" type="id_String" nullable="true"/>
         <mapperTableEntries name="HRA" expression="row1.HRA" type="id_Integer" nullable="true"/>
-        <mapperTableEntries name="Etl_date" expression="row2.Etl_date" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="Etl_date" expression="TalendDate.getCurrentDate()" type="id_Date" nullable="true"/>
       </outputTables>
       <inputTables sizeState="INTERMEDIATE" name="row1" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="empno" type="id_Integer" nullable="true"/>
